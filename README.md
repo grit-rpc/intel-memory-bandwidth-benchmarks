@@ -3,7 +3,13 @@ This project will no longer be maintained by Intel.
 Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.  
 Intel no longer accepts patches to this project.  
  If you have an ongoing need to use this project, are interested in independently developing it, or would like to maintain patches for the open source software community, please create your own fork of this project.  
-  
+
+# Make for Single Core Test (uses GCC)
+make stream_serial
+
+# Notes
+Other tests use OpenMP and Intel Compiler
+
 # Memory Bandwidth Benchmarks
 
 ## Overview
@@ -53,3 +59,5 @@ We provide a run script (`run.sh`) that can be used for benchmarking purposes. T
 
 
 [1]: McCalpin, John D., 1995: "Memory Bandwidth and Machine Balance in Current High Performance Computers", IEEE Computer Society Technical Committee on Computer Architecture (TCCA) Newsletter, December 1995.
+
+

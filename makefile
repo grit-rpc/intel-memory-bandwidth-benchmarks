@@ -1,7 +1,8 @@
 # Copyright (C) 2021 Intel Corporation
 # SPDX-License-Identifier: BSD-3-Clause
 
-CC  = icc
+CC  = icx
+GC = gcc
 
 # STREAM options:
 # -DNTIMES control the number of times each stream kernel is executed
@@ -58,6 +59,10 @@ stream_avx2.bin: $(AVX2_OBJS)
 stream_avx512.bin: $(AVX512_OBJS)
 	$(CC) $(COMMON_COPTS) $(AVX512_COPTS) $^ -o $@
 
+# Single-core version without OpenMP
+stream_serial: $(SRC)
+	$(GC) -Ofast $(SRC) -o stream -march=native
+
 help:
 	@echo -e "Running 'make' with no options would compile the STREAM benchmark with $(STREAM_ARRAY_SIZE) FP64 elements per array for following Intel CPU's:\n"
 	@echo -e "\tstream_avx.bin        => Targeted for Intel CPU's that support AVX ISA"
@@ -78,6 +83,6 @@ help:
 	@echo -e "\tmake size=67108864 cpu=avx512"
 
 clean:
-	rm -rf *.o *.bin 
+	rm -rf *.o *.bin *.exe stream
 
 .PHONY: all clean help
